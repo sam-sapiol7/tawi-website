@@ -115,3 +115,13 @@ table tr:nth-child(2n) { background: transparent; }
 .put > .menu__link::before { content: "PUT"; background: #8f4b00; }
 .patch > .menu__link::before { content: "PATCH"; background: #6b4bc4; }
 .delete > .menu__link::before { content: "DEL"; background: #b4191f; }
+
+/* the one call to action in the top bar */
+.navbar-download {
+  background: var(--ifm-color-primary);
+  color: #fff !important;
+  border-radius: 8px;
+  padding: 4px 14px;
+  margin-left: 8px;
+}
+.navbar-download:hover { background: var(--ifm-color-primary-dark); color: #fff; }

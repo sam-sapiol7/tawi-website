@@ -7,6 +7,9 @@ import type * as Preset from '@docusaurus/preset-classic';
 // and then the docs in docs/ are the unreleased ones.
 const versions: string[] = fs.existsSync('versions.json') ? JSON.parse(fs.readFileSync('versions.json', 'utf8')) : [];
 
+// Cloudflare Web Analytics (no cookies), only in builds that set the site's token.
+const analyticsToken = process.env.CF_WEB_ANALYTICS_TOKEN;
+
 const config: Config = {
   title: 'Tawi',
   tagline: 'Fine-tune and serve your own AI agents on your own computer.',
@@ -20,6 +23,16 @@ const config: Config = {
   url: 'https://tawi.ai',
   baseUrl: '/',
   trailingSlash: false,
+
+  scripts: analyticsToken
+    ? [
+        {
+          src: 'https://static.cloudflareinsights.com/beacon.min.js',
+          defer: true,
+          'data-cf-beacon': JSON.stringify({token: analyticsToken}),
+        },
+      ]
+    : [],
 
   onBrokenLinks: 'throw',
   onBrokenAnchors: 'throw',
@@ -48,7 +61,16 @@ const config: Config = {
               : {label: 'Next (unreleased)', banner: 'none'},
           },
         },
-        blog: false,
+        blog: {
+          blogTitle: 'Blog',
+          blogDescription: 'Releases, benchmarks and how-tos from the people who make Tawi.',
+          postsPerPage: 10,
+          showReadingTime: true,
+          onInlineTags: 'throw',
+          onInlineAuthors: 'throw',
+          onUntruncatedBlogPosts: 'throw',
+          feedOptions: {type: ['rss', 'atom'], copyright: 'Tawi'},
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -87,10 +109,11 @@ const config: Config = {
       '@easyops-cn/docusaurus-search-local',
       {
         hashed: true,
-        indexBlog: false,
+        indexBlog: true,
         docsRouteBasePath: '/docs',
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
+        indexPages: true,
       },
     ],
   ],
@@ -113,7 +136,9 @@ const config: Config = {
         {type: 'docSidebar', sidebarId: 'docs', position: 'left', label: 'Docs'},
         {type: 'docSidebar', sidebarId: 'api', position: 'left', label: 'API reference'},
         {type: 'docSidebar', sidebarId: 'library', position: 'left', label: 'Library'},
+        {to: '/blog', label: 'Blog', position: 'left'},
         {to: '/changelog', label: 'Changelog', position: 'left'},
+        {to: '/download', label: 'Download', position: 'right', className: 'navbar-download'},
         ...(versions.length ? [{type: 'docsVersionDropdown' as const, position: 'right' as const}] : []),
       ],
     },
@@ -137,7 +162,20 @@ const config: Config = {
         },
         {
           title: 'Tawi',
-          items: [{label: 'Changelog', to: '/changelog'}],
+          items: [
+            {label: 'Download', to: '/download'},
+            {label: 'Blog', to: '/blog'},
+            {label: 'Changelog', to: '/changelog'},
+            {label: 'Security', to: '/security'},
+          ],
+        },
+        {
+          title: 'About',
+          items: [
+            {label: 'Contact', to: '/contact'},
+            {label: 'Privacy', to: '/privacy'},
+            {label: 'Terms', to: '/terms'},
+          ],
         },
       ],
       copyright: 'Made with ♥ in Toronto',

@@ -11,6 +11,7 @@
 #                                   not needed if the Tawi repository is public
 #   secret   CLOUDFLARE_API_TOKEN   a Cloudflare API token with "Cloudflare Pages: Edit"
 #   secret   CLOUDFLARE_ACCOUNT_ID  the Cloudflare account id
+#   secret   CF_WEB_ANALYTICS_TOKEN optional: Cloudflare Web Analytics site token (no cookies)
 name: Site
 
 on:
@@ -57,6 +58,8 @@ jobs:
           node scripts/release-docs.mjs "$VERSION"
 
       - run: npm run build
+        env:
+          CF_WEB_ANALYTICS_TOKEN: ${{ github.event_name != 'pull_request' && secrets.CF_WEB_ANALYTICS_TOKEN || '' }}
       - run: npm run typecheck
 
       - name: Commit the new docs version

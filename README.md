@@ -15,7 +15,7 @@ Node 20 or newer.
 
 | Path | Source | Edit it |
 |---|---|---|
-| `docs/intro.md`, `docs/api/index.md`, `src/pages/index.tsx` | This repo | Here |
+| `docs/intro.md`, `docs/api/index.md`, `src/pages/` (home, download, security, privacy, terms, contact), `blog/` | This repo | Here |
 | `docs/start/`, `docs/guides/`, `docs/library/`, `src/pages/changelog.md`, `static/openapi/` | The Tawi repo, copied by `npm run sync-docs` | In the Tawi repo (`docs/`, `CHANGELOG.md`, docstrings), then sync |
 | `docs/api/agent/`, `docs/api/studio/` | Generated from `static/openapi/*.yaml` by `npm run gen-api` (part of `start` and `build`); not committed | In the Tawi repo's `docs/openapi/overlay/` |
 | `versioned_docs/`, `versioned_sidebars/`, `versions.json` | Frozen copies of `docs/`, one per Tawi release | Don't; they are what each release's studio links to |
@@ -52,6 +52,12 @@ Every push to `main` builds and deploys to the Cloudflare Pages project `tawi-we
 `.github/workflows/site.yml` for the secrets it needs). Pull requests are built but not deployed. The build writes
 Cloudflare's `_redirects` and `_headers` (`plugins/cloudflare-pages.ts`); `functions/_middleware.js` does the
 `docs.tawi.ai` redirect. In Cloudflare, add both `tawi.ai` and `docs.tawi.ai` as custom domains of the project.
+
+## Analytics
+
+Cloudflare Web Analytics, which sets no cookies. Builds include its script only when `CF_WEB_ANALYTICS_TOKEN` is set
+(the site's token from Cloudflare > Web Analytics); add it as a secret for the deploy step, or turn analytics on in
+the Pages project instead and leave it unset.
 
 ## Search
 

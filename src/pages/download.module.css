@@ -1,0 +1,46 @@
+.main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 56px 16px 96px;
+}
+.lead {
+  font-size: 1.1rem;
+  color: var(--tawi-text-2);
+}
+.tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  margin: 8px 0 16px;
+  border: 1px solid var(--tawi-line);
+  border-radius: 10px;
+  background: var(--tawi-surface);
+}
+.tabs button {
+  border: 0;
+  background: transparent;
+  color: var(--tawi-text-2);
+  font: inherit;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.tabs button.on {
+  background: var(--tawi-sunken);
+  color: var(--tawi-text);
+}
+.card {
+  padding: 24px;
+  background: var(--tawi-surface);
+  border: 1px solid var(--tawi-line);
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+.card h2 {
+  font-size: 1.05rem;
+}
+.note {
+  color: var(--tawi-text-2);
+  margin-bottom: 0;
+}

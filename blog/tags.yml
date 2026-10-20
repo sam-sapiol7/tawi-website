@@ -1,0 +1,12 @@
+fine-tuning:
+  label: Fine-tuning
+  permalink: /fine-tuning
+  description: Training models on your own data
+rag:
+  label: Search (RAG)
+  permalink: /rag
+  description: Answering from documents
+benchmarks:
+  label: Benchmarks
+  permalink: /benchmarks
+  description: Measured results you can reproduce
