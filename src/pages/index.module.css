@@ -1,0 +1,21 @@
+.main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 72px 16px 96px;
+}
+.title {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+.lead {
+  font-size: 1.15rem;
+  color: var(--tawi-text-2);
+  margin-bottom: 28px;
+}
+.links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
