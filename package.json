@@ -2,6 +2,7 @@
   "name": "tawi-website",
   "version": "0.0.0",
   "private": true,
+  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "start": "npm run gen-api && docusaurus start",
     "build": "npm run gen-api && docusaurus build",
