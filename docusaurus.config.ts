@@ -175,6 +175,7 @@ const config: Config = {
             {label: 'Contact', to: '/contact'},
             {label: 'Privacy', to: '/privacy'},
             {label: 'Terms', to: '/terms'},
+            {label: 'Hub terms', to: '/hub-terms'},
           ],
         },
       ],
