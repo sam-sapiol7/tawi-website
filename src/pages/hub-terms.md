@@ -40,17 +40,17 @@ The Tawi Hub at hub.tawi.ai keeps models and adapters that people share with `ta
 
 ## Reports and takedowns
 
-8. To report a repo (copyright, licence, malware, illegal content, personal data or anything else), email
-   **hello@tawi.ai** with the repo's name and what's wrong. Rights holders: include what you own, where it appears in
-   the repo, and how to reach you.
+8. To report a repo (copyright, licence, malware, illegal content, personal data or anything else), use
+   **Report this repo** on its page, or email **hello@tawi.ai** with the repo's name and what's wrong. Rights
+   holders: include what you own, where it appears in the repo, and how to reach you.
 9. We may take a repo down while we look into a report, or for good when it breaks these terms. A taken-down repo
    can't be downloaded and shows the reason. If you think we got it wrong, reply to our message and we'll look again.
    We may suspend accounts that break these terms repeatedly.
 
 ## Deleting
 
-10. To delete a repo or your account, email **hello@tawi.ai** from the address on your GitHub account. Its files
-    are removed from storage unless another of your repos still uses them.
+10. You can delete a repo in its settings, and your account in your account settings on hub.tawi.ai. Deleting
+    removes the files from storage unless another repo still uses them. Deleting can't be undone.
 
 ## Changes
 
