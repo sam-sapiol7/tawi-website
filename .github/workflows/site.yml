@@ -1,4 +1,4 @@
-# Build the site on every pull request; build and deploy to Cloudflare Pages on main.
+# Build the site on every pull request; build and deploy to GitHub Pages on main.
 #
 # A Tawi release triggers this with a repository_dispatch (event type "tawi-release", payload {"version": "X.Y.Z"}),
 # sent by the release workflow in the Tawi repo. The job then downloads that release's docs archive, freezes it as a
@@ -9,8 +9,6 @@
 #   variable TAWI_REPO              the Tawi repository, for example acme/tawi
 #   secret   TAWI_REPO_TOKEN        a fine-grained token with read access to that repository's contents (releases);
 #                                   not needed if the Tawi repository is public
-#   secret   CLOUDFLARE_API_TOKEN   a Cloudflare API token with "Cloudflare Pages: Edit"
-#   secret   CLOUDFLARE_ACCOUNT_ID  the Cloudflare account id
 #   secret   CF_WEB_ANALYTICS_TOKEN optional: Cloudflare Web Analytics site token (no cookies)
 name: Site
 
@@ -71,10 +69,22 @@ jobs:
           git diff --cached --quiet || git commit -m "Docs for Tawi $VERSION"
           git push origin HEAD:main
 
-      - name: Deploy to Cloudflare Pages
+      - uses: actions/upload-pages-artifact@v3
         if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || env.VERSION != '')
-        uses: cloudflare/wrangler-action@v3
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy build --project-name=tawi-website --branch=main
+          path: build
+
+  deploy:
+    # GitHub Pages. One-time setup: Settings > Pages > Source: "GitHub Actions", then set the custom domain there.
+    needs: site
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.event.client_payload.version || inputs.version)
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
