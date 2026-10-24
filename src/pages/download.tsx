@@ -1,41 +1,29 @@
 import {useEffect, useState, type ReactNode} from 'react';
 import Link from '@docusaurus/Link';
-import Layout from '@theme/Layout';
-import CodeBlock from '@theme/CodeBlock';
 
-import styles from './download.module.css';
+import {BETA_URL, GlassPage, glass as s} from '@site/src/components/glass/Glass';
 
 type OS = 'windows' | 'mac' | 'linux';
 
-const BETA_URL = 'https://github.com/sam-sapiol7/Tawi/releases/latest';
-
-const PLATFORMS: Record<OS, {label: string; needs: string[]; code: string; note?: ReactNode}> = {
+// The file names and warnings match START HERE.txt in the Tawi repo.
+const PLATFORMS: Record<OS, {label: string; file: string; warn: string; needs: string[]}> = {
   windows: {
     label: 'Windows',
-    needs: ['An NVIDIA GPU for fine-tuning (tested on an RTX 5050 laptop, driver 580 or newer)', 'Python 3.12 or 3.13 from python.org'],
-    code: 'python -m venv tawi\ntawi\\Scripts\\activate\npip install tawi-ai\ntawi setup\ntawi studio',
+    file: 'Start Tawi (Windows)',
+    warn: 'If Windows says “Windows protected your PC”, click More info, then Run anyway.',
+    needs: ['A 64-bit Windows PC', 'An NVIDIA GPU to fine-tune (driver 580 or newer)', 'Several GB free: the app, plus 0.5 to 5 GB per model'],
   },
   mac: {
     label: 'Mac',
-    needs: ['A Mac with Apple Silicon (M1 or newer)', 'Python 3.12 or 3.13'],
-    code: 'python3 -m venv tawi\nsource tawi/bin/activate\npip install tawi-ai\ntawi setup\ntawi studio',
-    note: (
-      <>
-        Fine-tuning on a Mac uses MLX and is <Link to="/docs/guides/beta">Beta</Link>: it works, but has been tested on
-        fewer machines.
-      </>
-    ),
+    file: 'Start Tawi (Mac)',
+    warn: 'If the Mac says it “cannot be opened”, right-click the file, choose Open, then Open again. Only needed once.',
+    needs: ['A Mac with Apple Silicon (M1 or newer). Intel Macs aren’t supported', 'Fine-tuning uses MLX and is in beta', 'Several GB free: the app, plus 0.5 to 5 GB per model'],
   },
   linux: {
     label: 'Linux',
-    needs: ['An NVIDIA GPU for fine-tuning', 'Python 3.12 or 3.13'],
-    code: 'python3 -m venv tawi\nsource tawi/bin/activate\npip install tawi-ai\ntawi setup\ntawi studio',
-    note: (
-      <>
-        On a server, the studio's Docker image is simpler. Put HTTPS in front of it before opening it to a network
-        (<Link to="/docs/guides/https">HTTPS guide</Link>).
-      </>
-    ),
+    file: 'Start Tawi (Linux).sh',
+    warn: 'Choose “Run” or “Run in Terminal” when your file manager asks.',
+    needs: ['A 64-bit Linux desktop with Python 3.12 (3.10 or newer works)', 'An NVIDIA GPU to fine-tune. Without one it installs the CPU build', 'Several GB free: the app, plus 0.5 to 5 GB per model'],
   },
 };
 
@@ -52,61 +40,86 @@ export default function Download(): ReactNode {
   useEffect(() => setOs(detect()), []);
   const p = PLATFORMS[os];
   return (
-    <Layout title="Download" description="Install the Tawi studio on Windows, Mac or Linux.">
-      <main className={styles.main}>
-        <h1>Download Tawi</h1>
-        <p className={styles.lead}>
-          The studio installs with pip and runs in your browser at <code>http://127.0.0.1:8000</code>. Without a GPU it
-          still builds document-answering agents; fine-tuning needs one.
-        </p>
-        <div className={styles.card}>
-          <h2>Beta testers: the easy way</h2>
-          <p>
-            <Link className="button button--primary button--lg" to={BETA_URL}>
-              Download the beta (zip)
-            </Link>
-          </p>
-          <ol>
-            <li>Sign in to GitHub with the account you were invited with, then download <code>tawi-beta-…zip</code> from the page that opens.</li>
-            <li>Unzip it and double-click <strong>Start Tawi</strong> for your system. No terminal needed. The first run installs (10 to 30 minutes).</li>
-            <li>Stuck? Open <code>START HERE.txt</code> in the zip, or use <em>Share diagnosis logs</em> on the Logs page.</li>
-          </ol>
-          <p className={styles.note}>The beta is invite-only for now. If the link shows "404", you haven't been added yet or aren't signed in.</p>
-        </div>
-        <h2>Install with pip (after the public launch)</h2>
-        <p className={styles.note}>The <code>tawi-ai</code> package isn't on PyPI yet, so the commands below only work after launch.</p>
-        <div className={styles.tabs} role="tablist">
+    <GlassPage title="Download Tawi" description="Download the Tawi beta for Windows, Apple Silicon Macs and Linux.">
+      <section className={`${s.dl} ${s.wrap} ${s.center}`}>
+        <span className={s.kicker}>Private beta</span>
+        <h1 className={s.title} style={{fontSize: 'clamp(40px, 6vw, 72px)', marginTop: 14}}>
+          Get Tawi for <span className={s.gradText}>{p.label}</span>
+        </h1>
+        <p className={s.lead}>One zip. Unzip it, double-click one file, and the studio opens in your browser.</p>
+        <div className={s.tabs} role="tablist" aria-label="Your system">
           {(Object.keys(PLATFORMS) as OS[]).map((k) => (
-            <button
-              key={k}
-              role="tab"
-              aria-selected={k === os}
-              className={k === os ? styles.on : undefined}
-              onClick={() => setOs(k)}>
+            <button key={k} role="tab" aria-selected={k === os} onClick={() => setOs(k)}>
               {PLATFORMS[k].label}
             </button>
           ))}
         </div>
-        <div className={styles.card}>
-          <h2>You need</h2>
-          <ul>
-            {p.needs.map((n) => (
-              <li key={n}>{n}</li>
-            ))}
-          </ul>
-          <h2>Install and start</h2>
-          <CodeBlock language={os === 'windows' ? 'powershell' : 'bash'}>{p.code}</CodeBlock>
-          <p>
-            <code>tawi setup</code> installs the GPU build of PyTorch and llama.cpp for fast answers. Then open{' '}
-            <code>http://127.0.0.1:8000</code>. On your own computer there is no sign-in.
-          </p>
-          {p.note && <p className={styles.note}>{p.note}</p>}
+        <div className={s.ctas}>
+          <Link to={BETA_URL} className={s.btn}>
+            Download the beta (zip) <span aria-hidden="true">↓</span>
+          </Link>
+          <Link to="/contact" className={s.ghost}>
+            Ask for an invite
+          </Link>
         </div>
-        <p>
-          Step by step, with every setting: the <Link to="/docs/start/install">install guide</Link>. What's new in
-          each version: the <Link to="/changelog">changelog</Link>.
+        <p className={s.fine}>
+          About 0.5 MB. Sign in to GitHub with the account you were invited with. A “404” means you haven’t been added yet.
         </p>
-      </main>
-    </Layout>
+
+        <div className={s.dlGrid}>
+          <div className={s.card}>
+            <span className={s.num}>1</span>
+            <h3>Unzip</h3>
+            <p>
+              Right-click the zip and choose Extract All (Windows), or double-click it (Mac). Put the folder somewhere
+              like Documents.
+            </p>
+          </div>
+          <div className={s.card}>
+            <span className={s.num}>2</span>
+            <h3>Double-click one file</h3>
+            <p>
+              Open <code>{p.file}</code>. {p.warn}
+            </p>
+          </div>
+          <div className={s.card}>
+            <span className={s.num}>3</span>
+            <h3>Wait once</h3>
+            <p>
+              The first run installs itself: a few GB, 10 to 30 minutes. Then your browser opens Tawi. Next time it
+              starts in seconds.
+            </p>
+          </div>
+        </div>
+
+        <div className={s.needs}>
+          <div className={s.card}>
+            <h3>You need</h3>
+            <ul>
+              {p.needs.map((n) => (
+                <li key={n}>{n}</li>
+              ))}
+            </ul>
+          </div>
+          <div className={s.card}>
+            <h3>Stuck?</h3>
+            <ul>
+              <li>
+                Read <code>START HERE.txt</code> in the zip.
+              </li>
+              <li>In Tawi, open Logs and press Share diagnosis logs. Your documents are never included.</li>
+              <li>
+                Step by step: the <Link to="/docs/start/install">install guide</Link> and{' '}
+                <Link to="/docs/guides/troubleshooting">troubleshooting</Link>.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <p className={s.note}>
+          Developers: <code>pip install tawi-ai</code> arrives with the public launch. What’s new: the{' '}
+          <Link to="/changelog">changelog</Link>.
+        </p>
+      </section>
+    </GlassPage>
   );
 }

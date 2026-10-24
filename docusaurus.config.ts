@@ -78,6 +78,8 @@ const config: Config = {
     ],
   ],
 
+  clientModules: ['./src/clientModules/fonts.ts'],
+
   plugins: [
     [
       'docusaurus-plugin-openapi-docs',
@@ -121,16 +123,17 @@ const config: Config = {
   themeConfig: {
     image: 'img/social-card.png',
     colorMode: {
-      respectPrefersColorScheme: true,
+      defaultMode: 'dark',
+      respectPrefersColorScheme: false,
     },
     navbar: {
-      title: 'Tawi',
+      title: 'tawi',
       logo: {
         alt: 'Tawi',
         src: 'img/logo.svg',
         srcDark: 'img/logo-dark.svg',
-        width: 26,
-        height: 26,
+        width: 28,
+        height: 28,
       },
       items: [
         {type: 'docSidebar', sidebarId: 'docs', position: 'left', label: 'Docs'},
@@ -184,7 +187,7 @@ const config: Config = {
     },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.vsDark,
+      darkTheme: prismThemes.oneDark,
       additionalLanguages: ['bash', 'json', 'python', 'http', 'powershell'],
     },
     languageTabs: [
