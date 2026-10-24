@@ -164,6 +164,7 @@ const config: Config = {
           title: 'Tawi',
           items: [
             {label: 'Download', to: '/download'},
+            {label: 'Pricing', to: '/pricing'},
             {label: 'Blog', to: '/blog'},
             {label: 'Changelog', to: '/changelog'},
             {label: 'Security', to: '/security'},
