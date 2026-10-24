@@ -11,7 +11,7 @@ info:
 
     **Stability.** This API is versioned with the studio and can change between minor releases while the studio
     is below 1.0; changes are listed in the changelog. Apps that answer customers should call the
-    [Agent API](https://docs.tawi.ai/api/agent) instead, which is stable.
+    [Agent API](https://tawihub.com/docs/api/agent) instead, which is stable.
 
     **Signing in.** `POST /api/login` sets two cookies: `ak_session` (the session, 12 hours) and `tawi_csrf`.
     Send both cookies on every request, and on every request that changes something (anything but GET) also
@@ -20,10 +20,10 @@ info:
 
     **Names.** The API calls agents *bots* in its paths (`/api/bots/{bid}`); `bid` is the agent's 8-character id.
 
-    Guide: [Studio API guide](https://docs.tawi.ai/guides/studio-api).
+    Guide: [Studio API guide](https://tawihub.com/docs/guides/studio-api).
   contact:
     name: Tawi.ai
-    url: https://tawi.ai
+    url: https://tawihub.com
 servers:
 - url: http://127.0.0.1:8000
   description: The studio on this PC
@@ -6490,4 +6490,4 @@ components:
             $ref: '#/components/schemas/Error'
 externalDocs:
   description: Studio API guide
-  url: https://docs.tawi.ai/guides/studio-api
+  url: https://tawihub.com/docs/guides/studio-api

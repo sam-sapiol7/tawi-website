@@ -54,5 +54,5 @@ version live again immediately.
 The specs in `docs/openapi/` are generated from the code by `scripts/gen_openapi.py`, with the descriptions kept
 in `docs/openapi/overlay/`. CI fails when the code changes and the specs weren't regenerated, so each commit's specs
 describe exactly that commit's API. Each release also publishes its specs, guides and library reference to the docs
-website, where every version keeps its own copy: the newest at `docs.tawi.ai`, older ones at
-`docs.tawi.ai/<version>/`.
+website, where every version keeps its own copy: the newest at `tawihub.com/docs`, older ones at
+`tawihub.com/docs/<version>/`.

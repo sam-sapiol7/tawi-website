@@ -1,20 +1,20 @@
 ---
 title: Tawi Hub terms
-description: What you can share on the Tawi Hub (hub.tawi.ai), and how reports and takedowns work.
+description: What you can share on the Tawi Hub (hub.tawihub.com), and how reports and takedowns work.
 ---
 
 # Tawi Hub terms
 
 *Last updated 20 October 2026.*
 
-The Tawi Hub at hub.tawi.ai keeps models and adapters that people share with `tawi push` and download with
+The Tawi Hub at hub.tawihub.com keeps models and adapters that people share with `tawi push` and download with
 `tawi pull`. These terms add to the [terms of use](/terms) for anything you upload or download there.
 
 ## Your account
 
 1. You sign in with a GitHub account, and your hub account name is your GitHub username. You're responsible for
    what's pushed with your tokens, so keep them private. `tawi logout` forgets the token on your computer; tell us
-   at **security@tawi.ai** if you think a token has leaked and we'll revoke it.
+   at **security@tawihub.com** if you think a token has leaked and we'll revoke it.
 2. Each account can store 50 GB to start, counting each distinct file once.
 
 ## What you upload
@@ -41,7 +41,7 @@ The Tawi Hub at hub.tawi.ai keeps models and adapters that people share with `ta
 ## Reports and takedowns
 
 8. To report a repo (copyright, licence, malware, illegal content, personal data or anything else), use
-   **Report this repo** on its page, or email **hello@tawi.ai** with the repo's name and what's wrong. Rights
+   **Report this repo** on its page, or email **hello@tawihub.com** with the repo's name and what's wrong. Rights
    holders: include what you own, where it appears in the repo, and how to reach you.
 9. We may take a repo down while we look into a report, or for good when it breaks these terms. A taken-down repo
    can't be downloaded and shows the reason. If you think we got it wrong, reply to our message and we'll look again.
@@ -49,7 +49,7 @@ The Tawi Hub at hub.tawi.ai keeps models and adapters that people share with `ta
 
 ## Deleting
 
-10. You can delete a repo in its settings, and your account in your account settings on hub.tawi.ai. Deleting
+10. You can delete a repo in its settings, and your account in your account settings on hub.tawihub.com. Deleting
     removes the files from storage unless another repo still uses them. Deleting can't be undone.
 
 ## Changes

@@ -4,10 +4,10 @@
     "title": "Tawi Studio API",
     "version": "0.1.0",
     "summary": "Everything the Tawi studio's web page does, for scripts and automation.",
-    "description": "The HTTP API behind the studio's web page: create agents, upload data, train, test, run the safety check,\npublish versions and deploy them. Use it to automate what you would otherwise click through.\n\n**Stability.** This API is versioned with the studio and can change between minor releases while the studio\nis below 1.0; changes are listed in the changelog. Apps that answer customers should call the\n[Agent API](https://docs.tawi.ai/api/agent) instead, which is stable.\n\n**Signing in.** `POST /api/login` sets two cookies: `ak_session` (the session, 12 hours) and `tawi_csrf`.\nSend both cookies on every request, and on every request that changes something (anything but GET) also\nsend the `X-CSRF-Token` header with the value of the `tawi_csrf` cookie. A temporary password (the first\n`admin`/`admin`, or one an admin set) only works from the studio's own PC until it is changed.\n\n**Names.** The API calls agents *bots* in its paths (`/api/bots/{bid}`); `bid` is the agent's 8-character id.\n\nGuide: [Studio API guide](https://docs.tawi.ai/guides/studio-api).\n",
+    "description": "The HTTP API behind the studio's web page: create agents, upload data, train, test, run the safety check,\npublish versions and deploy them. Use it to automate what you would otherwise click through.\n\n**Stability.** This API is versioned with the studio and can change between minor releases while the studio\nis below 1.0; changes are listed in the changelog. Apps that answer customers should call the\n[Agent API](https://tawihub.com/docs/api/agent) instead, which is stable.\n\n**Signing in.** `POST /api/login` sets two cookies: `ak_session` (the session, 12 hours) and `tawi_csrf`.\nSend both cookies on every request, and on every request that changes something (anything but GET) also\nsend the `X-CSRF-Token` header with the value of the `tawi_csrf` cookie. A temporary password (the first\n`admin`/`admin`, or one an admin set) only works from the studio's own PC until it is changed.\n\n**Names.** The API calls agents *bots* in its paths (`/api/bots/{bid}`); `bid` is the agent's 8-character id.\n\nGuide: [Studio API guide](https://tawihub.com/docs/guides/studio-api).\n",
     "contact": {
       "name": "Tawi.ai",
-      "url": "https://tawi.ai"
+      "url": "https://tawihub.com"
     }
   },
   "servers": [
@@ -10088,6 +10088,6 @@
   },
   "externalDocs": {
     "description": "Studio API guide",
-    "url": "https://docs.tawi.ai/guides/studio-api"
+    "url": "https://tawihub.com/docs/guides/studio-api"
   }
 }

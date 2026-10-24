@@ -1,13 +1,13 @@
 ---
 title: Terms of use
-description: The terms for using the tawi.ai website.
+description: The terms for using the tawihub.com website.
 ---
 
 # Terms of use
 
 *Last updated 20 October 2026.*
 
-These terms cover the tawi.ai website and its documentation. The Tawi software comes with its own licence, in the
+These terms cover the tawihub.com website and its documentation. The Tawi software comes with its own licence, in the
 `LICENSE` file of each release, which decides how you may use the software itself.
 
 1. **Use of the site.** You may read, link to and quote the documentation, and copy its code examples into your
@@ -21,4 +21,4 @@ These terms cover the tawi.ai website and its documentation. The Tawi software c
    the site.
 5. **Changes.** We may update these terms; the date above shows the latest version.
 
-Questions: **hello@tawi.ai**.
+Questions: **hello@tawihub.com**.

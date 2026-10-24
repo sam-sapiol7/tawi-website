@@ -5,8 +5,8 @@ description: How to reach the people who make Tawi.
 
 # Contact
 
-- **Questions, feedback and partnerships:** hello@tawi.ai
-- **Security issues:** security@tawi.ai (see [Security](/security))
-- **Privacy:** privacy@tawi.ai
+- **Questions, feedback and partnerships:** hello@tawihub.com
+- **Security issues:** security@tawihub.com (see [Security](/security))
+- **Privacy:** privacy@tawihub.com
 
 Tawi is made in Toronto.

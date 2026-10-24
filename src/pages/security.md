@@ -7,7 +7,7 @@ description: How Tawi protects your studio, your agents and your data, and how t
 
 ## Reporting a vulnerability
 
-Email **security@tawi.ai** with what you found and how to reproduce it. We'll confirm we have it and keep you
+Email **security@tawihub.com** with what you found and how to reproduce it. We'll confirm we have it and keep you
 informed while we fix it. Please give us a reasonable time to ship a fix before you publish details, and don't test
 against studios or agents that aren't yours.
 

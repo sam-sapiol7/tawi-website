@@ -4,10 +4,10 @@
     "title": "Tawi Agent API",
     "version": "1.0.0",
     "summary": "Ask a Tawi agent questions from your own app.",
-    "description": "The API your apps, websites and scripts call to get answers from an agent you built in the Tawi studio.\n\nThree servers speak it, with small differences noted on each operation (`x-tawi-servers`):\n\n- **studio**: the studio itself serves every live agent on one port (default `http://127.0.0.1:8000`).\n- **agent**: an agent's Docker container (`tawi.deploy.serve`) serves one agent (default port 8100).\n- **library**: `tawi serve` / `tawi.serve()` serves one model, optionally answering from a search index.\n\nEvery request except `GET /v1/health` needs the agent's API key (`ak_...`), which the studio shows once on the\nGo live step. Send it as `Authorization: Bearer <key>` or `X-API-Key: <key>`.\n\nGuides: [quickstart](https://docs.tawi.ai/guides/quickstart), [Agent API guide](https://docs.tawi.ai/guides/agent-api),\n[authentication](https://docs.tawi.ai/guides/authentication), [versioning](https://docs.tawi.ai/guides/versioning).\n",
+    "description": "The API your apps, websites and scripts call to get answers from an agent you built in the Tawi studio.\n\nThree servers speak it, with small differences noted on each operation (`x-tawi-servers`):\n\n- **studio**: the studio itself serves every live agent on one port (default `http://127.0.0.1:8000`).\n- **agent**: an agent's Docker container (`tawi.deploy.serve`) serves one agent (default port 8100).\n- **library**: `tawi serve` / `tawi.serve()` serves one model, optionally answering from a search index.\n\nEvery request except `GET /v1/health` needs the agent's API key (`ak_...`), which the studio shows once on the\nGo live step. Send it as `Authorization: Bearer <key>` or `X-API-Key: <key>`.\n\nGuides: [quickstart](https://tawihub.com/docs/guides/quickstart), [Agent API guide](https://tawihub.com/docs/guides/agent-api),\n[authentication](https://tawihub.com/docs/guides/authentication), [versioning](https://tawihub.com/docs/guides/versioning).\n",
     "contact": {
       "name": "Tawi.ai",
-      "url": "https://tawi.ai"
+      "url": "https://tawihub.com"
     }
   },
   "servers": [
@@ -1452,6 +1452,6 @@
   ],
   "externalDocs": {
     "description": "Agent API guide",
-    "url": "https://docs.tawi.ai/guides/agent-api"
+    "url": "https://tawihub.com/docs/guides/agent-api"
   }
 }

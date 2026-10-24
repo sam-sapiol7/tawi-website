@@ -1,7 +1,7 @@
 # tawi-website
 
 The Tawi website and docs, built with [Docusaurus](https://docusaurus.io/) and served by Cloudflare Pages at
-`tawi.ai` (`docs.tawi.ai` redirects to `tawi.ai/docs`).
+`tawihub.com` (`tawihub.com/docs` redirects to `tawihub.com/docs`).
 
 ```bash
 npm ci
@@ -51,7 +51,7 @@ Actions > Site > Run workflow with the version.
 Every push to `main` builds and deploys to the Cloudflare Pages project `tawi-website` (see the comment at the top of
 `.github/workflows/site.yml` for the secrets it needs). Pull requests are built but not deployed. The build writes
 Cloudflare's `_redirects` and `_headers` (`plugins/cloudflare-pages.ts`); `functions/_middleware.js` does the
-`docs.tawi.ai` redirect. In Cloudflare, add both `tawi.ai` and `docs.tawi.ai` as custom domains of the project.
+`tawihub.com/docs` redirect. In Cloudflare, add both `tawihub.com` and `tawihub.com/docs` as custom domains of the project.
 
 ## Analytics
 

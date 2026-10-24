@@ -39,4 +39,4 @@ Usage counts are saved; message text is not.
 
 ## Contact
 
-Questions about privacy: **privacy@tawi.ai**.
+Questions about privacy: **privacy@tawihub.com**.

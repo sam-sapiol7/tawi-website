@@ -17,11 +17,11 @@ info:
     Every request except `GET /v1/health` needs the agent's API key (`ak_...`), which the studio shows once on the
     Go live step. Send it as `Authorization: Bearer <key>` or `X-API-Key: <key>`.
 
-    Guides: [quickstart](https://docs.tawi.ai/guides/quickstart), [Agent API guide](https://docs.tawi.ai/guides/agent-api),
-    [authentication](https://docs.tawi.ai/guides/authentication), [versioning](https://docs.tawi.ai/guides/versioning).
+    Guides: [quickstart](https://tawihub.com/docs/guides/quickstart), [Agent API guide](https://tawihub.com/docs/guides/agent-api),
+    [authentication](https://tawihub.com/docs/guides/authentication), [versioning](https://tawihub.com/docs/guides/versioning).
   contact:
     name: Tawi.ai
-    url: https://tawi.ai
+    url: https://tawihub.com
 servers:
 - url: http://127.0.0.1:8000
   description: The studio on this PC (all live agents)
@@ -1050,4 +1050,4 @@ security:
 - apiKeyHeader: []
 externalDocs:
   description: Agent API guide
-  url: https://docs.tawi.ai/guides/agent-api
+  url: https://tawihub.com/docs/guides/agent-api

@@ -53,4 +53,4 @@ python scripts/bench_finetune.py --model qwen3-0.6b --data demo_data/customer-de
 ```
 
 The second line pads every example to make them longer. Unsloth has to be installed for the comparison
-(`pip install tawi-ai[unsloth]`). If your numbers look different, we'd like to see them: hello@tawi.ai.
+(`pip install tawi-ai[unsloth]`). If your numbers look different, we'd like to see them: hello@tawihub.com.
