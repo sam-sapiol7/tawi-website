@@ -73,7 +73,8 @@ export default function Download(): ReactNode {
           </ol>
           <p className={styles.note}>The beta is invite-only for now. If the link shows "404", you haven't been added yet or aren't signed in.</p>
         </div>
-        <h2>Install with pip instead</h2>
+        <h2>Install with pip (after the public launch)</h2>
+        <p className={styles.note}>The <code>tawi-ai</code> package isn't on PyPI yet, so the commands below only work after launch.</p>
         <div className={styles.tabs} role="tablist">
           {(Object.keys(PLATFORMS) as OS[]).map((k) => (
             <button

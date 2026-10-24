@@ -40,11 +40,12 @@ export default function Home(): ReactNode {
             Upload documents or example answers, fine-tune a small model on your GPU, pass a safety check, and put it
             live behind an API key.
           </p>
-          <div className={styles.install}>
-            <CodeBlock language="bash">{'pip install tawi-ai\ntawi setup\ntawi studio'}</CodeBlock>
-          </div>
+          <p className={styles.lead}>
+            <strong>Private beta for Windows, Mac and Linux:</strong> download the zip, unzip it and double-click Start Tawi.
+            No terminal needed.
+          </p>
           <div className={styles.links}>
-            <Link className="button button--primary" to="/download">Download</Link>
+            <Link className="button button--primary" to="/download">Download the beta</Link>
             <Link className="button button--secondary" to="/docs/start/quickstart">Quick start</Link>
           </div>
         </section>
