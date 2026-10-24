@@ -19,8 +19,8 @@ const config: Config = {
     v4: true,
   },
 
-  // tawi.ai serves the whole site; docs.tawi.ai redirects to tawi.ai/docs (functions/_middleware.js).
-  url: 'https://tawi.ai',
+  // tawihub.com serves the whole site (GitHub Pages).
+  url: 'https://tawihub.com',
   baseUrl: '/',
   trailingSlash: false,
 
