@@ -7,6 +7,8 @@ import styles from './download.module.css';
 
 type OS = 'windows' | 'mac' | 'linux';
 
+const BETA_URL = 'https://github.com/sam-sapiol7/Tawi/releases/latest';
+
 const PLATFORMS: Record<OS, {label: string; needs: string[]; code: string; note?: ReactNode}> = {
   windows: {
     label: 'Windows',
@@ -57,6 +59,21 @@ export default function Download(): ReactNode {
           The studio installs with pip and runs in your browser at <code>http://127.0.0.1:8000</code>. Without a GPU it
           still builds document-answering agents; fine-tuning needs one.
         </p>
+        <div className={styles.card}>
+          <h2>Beta testers: the easy way</h2>
+          <p>
+            <Link className="button button--primary button--lg" to={BETA_URL}>
+              Download the beta (zip)
+            </Link>
+          </p>
+          <ol>
+            <li>Sign in to GitHub with the account you were invited with, then download <code>tawi-beta-…zip</code> from the page that opens.</li>
+            <li>Unzip it and double-click <strong>Start Tawi</strong> for your system. No terminal needed. The first run installs (10 to 30 minutes).</li>
+            <li>Stuck? Open <code>START HERE.txt</code> in the zip, or use <em>Share diagnosis logs</em> on the Logs page.</li>
+          </ol>
+          <p className={styles.note}>The beta is invite-only for now. If the link shows "404", you haven't been added yet or aren't signed in.</p>
+        </div>
+        <h2>Install with pip instead</h2>
         <div className={styles.tabs} role="tablist">
           {(Object.keys(PLATFORMS) as OS[]).map((k) => (
             <button
@@ -80,8 +97,7 @@ export default function Download(): ReactNode {
           <CodeBlock language={os === 'windows' ? 'powershell' : 'bash'}>{p.code}</CodeBlock>
           <p>
             <code>tawi setup</code> installs the GPU build of PyTorch and llama.cpp for fast answers. Then open{' '}
-            <code>http://127.0.0.1:8000</code> and sign in with <code>admin</code> / <code>admin</code>; the studio asks
-            you to choose a password.
+            <code>http://127.0.0.1:8000</code>. On your own computer there is no sign-in.
           </p>
           {p.note && <p className={styles.note}>{p.note}</p>}
         </div>
