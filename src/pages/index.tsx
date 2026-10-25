@@ -91,14 +91,14 @@ const POWERUPS = [
 ];
 
 const FAQ: [string, ReactNode][] = [
-  ['WHAT IS TAWI, IN ONE LINE?', 'A free app that turns your documents into an AI assistant that runs on your own computer and answers with sources.'],
-  ['DO I NEED TO KNOW HOW TO CODE?', 'No. Adding files, training, the safety check and going live are all buttons. If you do code, there are notebooks and a Python library.'],
-  ['DO I NEED A GRAPHICS CARD?', 'Not to start. Document answering (RAG) runs on any modern PC or Mac. Fine-tuning needs an NVIDIA GPU or an Apple Silicon Mac (M1 or newer).'],
-  ['DOES ANY OF MY DATA LEAVE MY COMPUTER?', 'No. Your files, questions and answers stay on your disk. Tawi checks once a day for a new version, and you can switch that off.'],
-  ['WHICH COMPUTERS DOES IT RUN ON?', 'Windows, Macs with Apple Silicon, and Linux. Intel Macs are not supported.'],
-  ['HOW HARD IS IT TO INSTALL?', 'Unzip, then double-click "Start Tawi". The first start sets itself up in 10 to 30 minutes. No terminal needed.'],
-  ['CAN I CONNECT IT TO WHATSAPP OR MY WEBSITE?', <>Yes. Once it passes the safety check it gets an API key and one REST endpoint, so anything that can call a URL can use it: a website chat, a WhatsApp bot, your helpdesk. Ship it in Docker to run it on a server. See the <Link to="/docs/guides/agent-api">Agent API guide</Link>.</>],
-  ['WHAT DOES IT COST?', <>Free while in beta, and free to run on your own computer. Tawi Labs, for teams, adds a shared drive, your own GPU servers, single sign-on and an encrypted secure space. See <Link to="/pricing">pricing</Link>.</>],
+  ['WHAT IS TAWI, IN ONE LINE?', 'A free app that turns your documents into an AI assistant that runs on your own computer and answers with sources. Like a very well-read intern who never asks for a raise.'],
+  ['DO I NEED TO KNOW HOW TO CODE?', 'No. Adding files, training, the safety check and going live are all buttons. If you do code, there are notebooks and a Python library. No judgement either way.'],
+  ['DO I NEED A GRAPHICS CARD?', 'Not to start. Document answering (RAG) runs on any modern PC or Mac. Fine-tuning needs an NVIDIA GPU or an Apple Silicon Mac (M1 or newer). Your gaming PC finally gets a day job.'],
+  ['DOES ANY OF MY DATA LEAVE MY COMPUTER?', 'No. Your files, questions and answers stay on your disk. Tawi checks once a day for a new version, and you can switch that off. That is the whole list of things it phones home about.'],
+  ['WHICH COMPUTERS DOES IT RUN ON?', 'Windows, Macs with Apple Silicon, and Linux. Intel Macs are not supported. They had a good run.'],
+  ['HOW HARD IS IT TO INSTALL?', 'Unzip, then double-click "Start Tawi". The first start sets itself up in 10 to 30 minutes. No terminal needed. Good time to stretch.'],
+  ['CAN I CONNECT IT TO WHATSAPP OR MY WEBSITE?', <>Yes. Once it passes the safety check it gets an API key and one REST endpoint, so anything that can call a URL can use it: a website chat, a WhatsApp bot, your helpdesk. Ship it in Docker to run it on a server. See the <Link to="/docs/guides/agent-api">Agent API guide</Link>. Your customers can now text your PDFs.</>],
+  ['WHAT DOES IT COST?', <>Free while in beta, and free to run on your own computer. Tawi Labs, for teams, adds a shared drive, your own GPU servers, single sign-on and an encrypted secure space. See <Link to="/pricing">pricing</Link>. No surprise invoices; we checked with ourselves.</>],
   ['WILL MY AI TAKE OVER THE WORLD?', 'Unlikely. It was trained on your returns policy. Worst case, it takes over returns.'],
 ];
 
