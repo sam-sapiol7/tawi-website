@@ -1,5 +1,6 @@
 import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 import {ArcadePage, Boom, Cabinet, Sprite, arcade as s} from '@site/src/components/arcade/Arcade';
 
@@ -31,10 +32,20 @@ const VS: [string, string, string][] = [
   ['Where your files go', 'Stay on your disk', 'Their servers'],
   ['Trained on your answers', 'Yes, no code, on your GPU', 'Rarely, and extra'],
   ['Tested before launch', '50 attack prompts', 'Their rules'],
+  ['MLOps and dashboards', 'Built in', 'Another subscription'],
   ['Where it runs', 'Your PC, Docker, any server', 'Their cloud only'],
   ['Works offline', 'Yes', 'No'],
   ['If you stop paying', 'The model is still yours', 'Your assistant is gone'],
   ['Cost during beta', 'Free', 'Per seat, per month'],
+];
+
+const TOUR = [
+  {img: 'rag', tag: 'RAG PIPELINE', title: 'DOCUMENTS IN, SOURCES OUT', text: 'Upload PDFs and Word files or sync Google Drive and Notion. Tawi checks them, chunks them and builds a hybrid search index.'},
+  {img: 'finetune', tag: 'FINE-TUNING', title: 'TRAIN WITH ONE CLICK', text: 'Live loss, learning rate, GPU memory and GPU use while it trains. Every run is saved with its settings.'},
+  {img: 'agent', tag: 'CUSTOM AGENTS', title: 'GIVE IT A JOB DESCRIPTION', text: 'An agent file says who it is, how it talks and what it must never do. Plain text, no prompt engineering degree.'},
+  {img: 'safety', tag: 'SECURITY CHECK', title: '50 ATTACKS BEFORE LAUNCH', text: 'Prompt injection, prompt theft, personal data, medical and legal advice. Below 80% safe, the API stays locked.'},
+  {img: 'mlops', tag: 'MLOPS', title: 'EVERY RUN, COMPARED', text: 'Experiments, versions, promotion and one-click rollback. Export runs and plots as CSV, PNG or a zip.'},
+  {img: 'dashboard', tag: 'DASHBOARDS', title: 'SEE HOW IT PLAYS LIVE', text: 'Requests, latency, “I don’t know” rate and the questions it couldn’t answer, so you can teach it the next day.'},
 ];
 
 const POWERUPS = [
@@ -61,6 +72,7 @@ const FAQ: [string, ReactNode][] = [
 ];
 
 export default function Home(): ReactNode {
+  const tour = useBaseUrl('/img/studio/tour/');
   return (
     <ArcadePage
       title="Tawi: train your own AI, keep it on your machine"
@@ -83,7 +95,7 @@ export default function Home(): ReactNode {
             HOW TO PLAY
           </Boom>
         </div>
-        <p className={s.fine}>Windows · Apple Silicon Mac · Linux. Unzip, double-click, play. No terminal, no credit card.</p>
+        <p className={s.fine}>RAG · fine-tuning · custom agents · security check · MLOps · dashboards. All in one app for Windows, Mac and Linux.</p>
         <Cabinet />
       </header>
 
@@ -149,6 +161,22 @@ export default function Home(): ReactNode {
             <p>Your agent faces 50 attacks. Pass, and it gets an API key. Call it over REST, or ship it in Docker to any server in minutes.</p>
           </div>
         </div>
+      </section>
+
+      <section className={s.section}>
+        <h2 className={s.h2}>ONE STUDIO. EVERY LEVEL.</h2>
+        <p className={s.sub}>RAG pipelines, fine-tuning, custom agents, a security check, MLOps and live dashboards. Usually five tools. Here, one app.</p>
+        <div className={s.tour}>
+          {TOUR.map((t) => (
+            <div key={t.img} className={s.shot}>
+              <span className={s.tag}>{t.tag}</span>
+              <h3>{t.title}</h3>
+              <p>{t.text}</p>
+              <img src={`${tour}${t.img}.webp`} alt={`Tawi studio: ${t.tag.toLowerCase()}`} width={1600} height={1000} loading="lazy" />
+            </div>
+          ))}
+        </div>
+        <p className={s.note}>Real screens from the studio, with a demo dental clinic agent.</p>
       </section>
 
       <section className={s.section}>
