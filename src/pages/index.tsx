@@ -173,7 +173,7 @@ export default function Home(): ReactNode {
 
       <section className={s.section}>
         <h2 className={s.h2}>CLICKS OR CODE. YOUR CALL.</h2>
-        <p className={s.sub}>Same engine either way. From a folder of files to a live API in one afternoon.</p>
+        <p className={s.sub}>Same engine either way. Clickers and coders both welcome. Semicolons optional (it’s Python).</p>
         <div className={s.ways}>
           <div className={s.way}>
             <h3>IN THE STUDIO</h3>
@@ -204,7 +204,7 @@ export default function Home(): ReactNode {
 
       <section className={s.section}>
         <h2 className={s.h2}>ONE STUDIO. EVERY LEVEL.</h2>
-        <p className={s.sub}>RAG pipelines, fine-tuning, custom agents, a security check, MLOps and live dashboards. Usually five tools. Here, one app.</p>
+        <p className={s.sub}>RAG pipelines, fine-tuning, custom agents, a security check, MLOps and live dashboards. Usually five tools and five invoices. Here, one app.</p>
         <div className={s.tour}>
           {TOUR.map((t) => (
             <div key={t.img} className={s.shot}>
@@ -220,7 +220,7 @@ export default function Home(): ReactNode {
 
       <section className={s.section}>
         <h2 className={s.h2}>TRAIN IT. TEST IT. SHIP IT.</h2>
-        <p className={s.sub}>The parts other tools charge extra for.</p>
+        <p className={s.sub}>The parts other tools charge extra for. We forgot to.</p>
         <div className={`${s.way} ${s.alt}`} style={{marginBottom: 22}}>
           <h3>FINE-TUNE IN 10 LINES</h3>
           <pre className={s.codebox}>
@@ -234,7 +234,7 @@ export default function Home(): ReactNode {
               ))}
             </code>
           </pre>
-          <p className={s.fine} style={{marginTop: 14}}>16 seconds for Qwen3 0.6B on an 8 GB laptop GPU. Prefer clicks? It’s the Train button.</p>
+          <p className={s.fine} style={{marginTop: 14}}>16 seconds for Qwen3 0.6B on an 8 GB laptop GPU. Not enough time to make coffee. We tried. Prefer clicks? It’s the Train button.</p>
         </div>
         <div className={`${s.ways} ${s.even}`}>
           <div className={s.way}>
@@ -250,7 +250,7 @@ export default function Home(): ReactNode {
             <h3>MLOPS BUILT IN</h3>
             <ul>
               <li><b>Experiment tracking</b>: every run, its data and settings</li>
-              <li><b>Model registry</b>: draft, tested, live, with one-click rollback</li>
+              <li><b>Model registry</b>: draft, tested, live, with one-click rollback (for Friday deploys)</li>
               <li><b>Held-out scoring</b> on questions it never trained on</li>
               <li><b>Live dashboards</b>: requests, latency, unanswered questions</li>
               <li><b>Export</b> to CSV, PNG or MLflow</li>
