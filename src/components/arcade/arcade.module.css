@@ -126,6 +126,7 @@
 .score { font-size: 22px; }
 .row p { font-family: var(--term); font-size: 24px; color: var(--dim); }
 .row p b { display: block; font-family: var(--pixel); font-size: 12px; font-weight: 400; color: var(--text); margin-bottom: 8px; line-height: 1.6; }
+.heart { color: var(--pink); text-shadow: 0 0 8px var(--pink); font-family: system-ui, sans-serif; font-size: 1.6em; line-height: 0; vertical-align: -0.1em; }
 .r1 { color: var(--yellow); } .r2 { color: var(--cyan); } .r3 { color: var(--pink); }
 
 /* stages */

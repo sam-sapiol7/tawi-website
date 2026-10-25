@@ -413,7 +413,7 @@ export function ArcadePage({title, description, children}: {title: string; descr
           </nav>
           <main>{children}</main>
           <footer className={s.footer}>
-            <span>© TAWI · MADE IN TORONTO</span>
+            <span>MADE WITH <span className={s.heart} aria-label="love">♥</span> IN TORONTO</span>
             <div>
               {FOOT.map(([l, to]) => (
                 <Link key={to} to={to}>

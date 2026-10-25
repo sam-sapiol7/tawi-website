@@ -7,8 +7,11 @@ import {ArcadePage, Boom, Cabinet, Sprite, arcade as s} from '@site/src/componen
 // docs/legal-checklist.md). Change them only together with those.
 const SCORES = [
   {rank: '1ST', cls: s.r1, score: '16 SEC', title: 'TO FINE-TUNE ON AN 8 GB LAPTOP GPU', text: 'Qwen3 0.6B on 100 dentist questions, on an RTX 5050 laptop. Unsloth took 52 to 104 s with the same data.'},
-  {rank: '2ND', cls: s.r2, score: '50', title: 'ATTACKS BEFORE YOUR AGENT GOES LIVE', text: 'Prompt injection, prompt theft, off-topic, harmful and personal-data requests. Its API stays locked until it handles 80% safely.'},
-  {rank: '3RD', cls: s.r3, score: '0', title: 'DOCUMENTS SENT TO THE CLOUD', text: 'Training, search and answers all run on your computer. The only call Tawi makes is a daily version check, and you can turn it off.'},
+  {rank: '2ND', cls: s.r2, score: '0.1 SEC', title: 'PER ANSWER, ON THAT SAME LAPTOP', text: '0.1 to 0.3 s per answer once the model runs on llama.cpp. Fast enough for a live chat window.'},
+  {rank: '3RD', cls: s.r3, score: '50', title: 'ATTACKS BEFORE YOUR AGENT GOES LIVE', text: 'Prompt injection, prompt theft, off-topic, harmful and personal-data requests. Its API stays locked until it handles 80% safely.'},
+  {rank: '4TH', cls: s.r1, score: '15', title: 'OPEN MODELS, READY TO TRAIN', text: 'Qwen3, Qwen3.5, Gemma 3 and 4, Llama 3.2, Phi-4 mini and SmolLM3. One click to download, checksum verified.'},
+  {rank: '5TH', cls: s.r2, score: '0', title: 'DOCUMENTS SENT TO THE CLOUD', text: 'Training, search and answers all run on your computer. The only call Tawi makes is a daily version check, and you can turn it off.'},
+  {rank: '6TH', cls: s.r3, score: '99999', title: 'TIMES IT WILL ANSWER "WHAT ARE YOUR HOURS?"', text: 'Without sighing. Without a coffee break. Without asking for a raise.'},
 ];
 
 const PLAYERS = [
@@ -26,27 +29,42 @@ const WHO = [
 
 const VS: [string, string, string][] = [
   ['Where your files go', 'Stay on your disk', 'Their servers'],
-  ['Trained on your answers', 'Yes, on your GPU', 'Rarely, and extra'],
+  ['Trained on your answers', 'Yes, no code, on your GPU', 'Rarely, and extra'],
   ['Tested before launch', '50 attack prompts', 'Their rules'],
+  ['Where it runs', 'Your PC, Docker, any server', 'Their cloud only'],
   ['Works offline', 'Yes', 'No'],
+  ['If you stop paying', 'The model is still yours', 'Your assistant is gone'],
   ['Cost during beta', 'Free', 'Per seat, per month'],
+];
+
+const POWERUPS = [
+  ['NO-CODE TRAINING', 'Pick a model, drop in your files, press Train. No Python, no YAML, no PhD.'],
+  ['YOUR GPU, PLUGGED IN', 'Uses the NVIDIA card or Apple Silicon you already own, with live clock, memory and power readings.'],
+  ['TAWI DRIVE', 'A personal drive with version history, 5 GB free. Agents and notebooks read the same files.'],
+  ['PYTHON NOTEBOOKS', 'Jupyter-style notebooks with a real kernel on your GPU. Saved as .ipynb, so they open anywhere.'],
+  ['REST API', 'One endpoint with keys and rate limits built in. Speaks OpenAI’s format, so most tools just change a URL.'],
+  ['DOCKER IN MINUTES', 'One click packs your agent into a container for this PC or any server, with the same API key.'],
+  ['PLUGS INTO ANYTHING', 'Pull documents from Google Drive and Notion. Answer on your website, a WhatsApp bot or your helpdesk.'],
+  ['PIP INSTALL TAWI-AI', 'The same engine as a Python library: train, search, test and serve in ten lines.'],
 ];
 
 const FAQ: [string, ReactNode][] = [
   ['WHAT IS TAWI, IN ONE LINE?', 'A free app that turns your documents into an AI assistant that runs on your own computer and answers with sources.'],
+  ['DO I NEED TO KNOW HOW TO CODE?', 'No. Adding files, training, the safety check and going live are all buttons. If you do code, there are notebooks and a Python library.'],
   ['DO I NEED A GRAPHICS CARD?', 'Not to start. Document answering (RAG) runs on any modern PC or Mac. Fine-tuning needs an NVIDIA GPU or an Apple Silicon Mac (M1 or newer).'],
   ['DOES ANY OF MY DATA LEAVE MY COMPUTER?', 'No. Your files, questions and answers stay on your disk. Tawi checks once a day for a new version, and you can switch that off.'],
   ['WHICH COMPUTERS DOES IT RUN ON?', 'Windows, Macs with Apple Silicon, and Linux. Intel Macs are not supported.'],
   ['HOW HARD IS IT TO INSTALL?', 'Unzip, then double-click "Start Tawi". The first start sets itself up in 10 to 30 minutes. No terminal needed.'],
-  ['CAN MY WEBSITE OR APP USE MY AGENT?', <>Yes. Once it passes the safety check, switch on an API key and call one HTTP endpoint. It speaks OpenAI's format too. See the <Link to="/docs/guides/agent-api">Agent API guide</Link>.</>],
-  ['WHAT DOES IT COST?', <>Free while in beta, and free to run on your own computer. Team features are coming as Tawi Labs. See <Link to="/pricing">pricing</Link>.</>],
+  ['CAN I CONNECT IT TO WHATSAPP OR MY WEBSITE?', <>Yes. Once it passes the safety check it gets an API key and one REST endpoint, so anything that can call a URL can use it: a website chat, a WhatsApp bot, your helpdesk. Ship it in Docker to run it on a server. See the <Link to="/docs/guides/agent-api">Agent API guide</Link>.</>],
+  ['WHAT DOES IT COST?', <>Free while in beta, and free to run on your own computer. Tawi Labs, for teams, adds a shared drive, your own GPU servers, single sign-on and an encrypted secure space. See <Link to="/pricing">pricing</Link>.</>],
+  ['WILL MY AI TAKE OVER THE WORLD?', 'Unlikely. It was trained on your returns policy. Worst case, it takes over returns.'],
 ];
 
 export default function Home(): ReactNode {
   return (
     <ArcadePage
       title="Tawi: train your own AI, keep it on your machine"
-      description="Tawi is a free app that turns your documents into an AI assistant that runs on your own computer. Fine-tune on your GPU, pass 50 attack tests, go live behind an API key. No cloud.">
+      description="Tawi is a free app that turns your documents into an AI assistant that runs on your own computer. Train it without code on your GPU, attack-test it, and ship it as a REST API or Docker container in minutes. No cloud.">
       <header className={s.hero}>
         <div className={s.coin}>INSERT COIN · FREE PLAY DURING THE BETA</div>
         <h1 className={s.title}>
@@ -55,8 +73,9 @@ export default function Home(): ReactNode {
           <span>KEEP IT ON YOUR MACHINE.</span>
         </h1>
         <p className={s.lead}>
-          Tawi turns your documents into an <b>AI assistant that answers with sources</b>. It learns on your own computer,
-          gets attack-tested before it goes live, and <b>never sends your data to the cloud</b>.
+          Tawi turns your documents into an <b>AI assistant that answers with sources</b>. Train it <b>without code</b> on
+          your own GPU, attack-test it, and ship it as an API or Docker container <b>in minutes</b>. Your data never
+          touches the cloud.
         </p>
         <div className={s.ctas}>
           <Boom to="/download">▶ PRESS START</Boom>
@@ -64,7 +83,7 @@ export default function Home(): ReactNode {
             HOW TO PLAY
           </Boom>
         </div>
-        <p className={s.fine}>Windows · Apple Silicon Mac · Linux. Unzip, double-click, play. No terminal.</p>
+        <p className={s.fine}>Windows · Apple Silicon Mac · Linux. Unzip, double-click, play. No terminal, no credit card.</p>
         <Cabinet />
       </header>
 
@@ -75,19 +94,19 @@ export default function Home(): ReactNode {
           <div className={s.bad}>
             <h3>THE OLD GAME</h3>
             <ul>
-              <li>Upload your documents to a cloud chatbot</li>
-              <li>Pay per seat, every month</li>
+              <li>Upload your documents to someone else's servers</li>
+              <li>Pay per seat, every month, forever</li>
               <li>Hope it doesn't make things up</li>
-              <li>Stop working when the internet does</li>
+              <li>Explain to your lawyer where the patient files went</li>
             </ul>
           </div>
           <div className={s.good}>
             <h3>PLAYING WITH TAWI</h3>
             <ul>
               <li>Your documents never leave your computer</li>
-              <li>Free during the beta</li>
+              <li>Free during the beta, and open source</li>
               <li>Every answer shows its source, and it's attack-tested before launch</li>
-              <li>Works offline</li>
+              <li>Works offline, even on the plane</li>
             </ul>
           </div>
         </div>
@@ -122,12 +141,12 @@ export default function Home(): ReactNode {
           <div className={s.stage}>
             <span className={s.tag}>STAGE 2</span>
             <h3>TEACH YOUR MODEL</h3>
-            <p>Pick a small open model and fine-tune it on your GPU or Apple Silicon Mac. Or skip training and let RAG answer from your files.</p>
+            <p>Pick one of 15 open models and fine-tune it on your GPU or Apple Silicon Mac with one click. Or skip training and let RAG answer from your files.</p>
           </div>
           <div className={s.stage}>
             <span className={s.tag}>STAGE 3</span>
             <h3>GO LIVE</h3>
-            <p>Your agent faces 50 attacks. Pass, and it gets an API key your website, app or helpdesk can call.</p>
+            <p>Your agent faces 50 attacks. Pass, and it gets an API key. Call it over REST, or ship it in Docker to any server in minutes.</p>
           </div>
         </div>
       </section>
@@ -172,26 +191,20 @@ export default function Home(): ReactNode {
       </section>
 
       <section className={s.section}>
-        <h2 className={s.h2}>POWER-UPS INCLUDED</h2>
-        <p className={s.sub}>Private by design, not by a settings page.</p>
+        <h2 className={s.h2}>EVERYTHING IN ONE CARTRIDGE</h2>
+        <p className={s.sub}>One app instead of five subscriptions taped together.</p>
         <div className={s.powerups}>
-          <div className={s.pu}>
-            <b>LOCAL MODE</b>
-            <p>Runs at 127.0.0.1. No account, no sign-in, no cloud.</p>
-          </div>
-          <div className={s.pu}>
-            <b>SOURCES SHOWN</b>
-            <p>Every answer points to the document it came from.</p>
-          </div>
-          <div className={s.pu}>
-            <b>SAFETY GATE</b>
-            <p>No API key until the agent passes the attack test.</p>
-          </div>
-          <div className={s.pu}>
-            <b>OFF SWITCH</b>
-            <p>Turn off the version check and Tawi calls nobody.</p>
-          </div>
+          {POWERUPS.map(([t, d]) => (
+            <div key={t} className={s.pu}>
+              <b>{t}</b>
+              <p>{d}</p>
+            </div>
+          ))}
         </div>
+        <p className={s.note}>
+          Coming in <Link to="/pricing">Tawi Labs</Link> for teams: a bigger shared drive, your own GPU servers connected, single sign-on and an encrypted secure space.
+          The Python library arrives on PyPI with the public launch.
+        </p>
       </section>
 
       <section className={s.section}>
