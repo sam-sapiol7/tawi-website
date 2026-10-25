@@ -120,6 +120,18 @@
 .bad li::before { content: '✕ '; color: #ff6b8a; }
 .good li::before { content: '▶ '; color: var(--green); }
 
+/* clicks or code */
+.ways { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 22px; }
+.ways.even { grid-template-columns: 1fr 1fr; }
+.way { padding: 26px; background: var(--panel); border: 4px solid var(--cyan); min-width: 0; }
+.way.alt { border-color: var(--pink); }
+.way h3 { font-family: var(--pixel); font-size: 13px; line-height: 1.6; color: var(--yellow) !important; margin-bottom: 16px !important; }
+.way ol, .way ul { margin: 0; padding-left: 1.4em; display: grid; gap: 8px; color: var(--dim); }
+.way li b { color: var(--text); font-weight: 400; }
+.codebox { margin: 0; padding: 18px; background: #05020c; border: 2px solid var(--rim); overflow-x: auto; font-family: var(--term); font-size: 20px; line-height: 1.45; color: var(--text); white-space: pre; font-variant-ligatures: none; }
+.codebox code { background: none !important; color: inherit !important; padding: 0 !important; font-size: inherit !important; }
+.codebox i { font-style: normal; color: var(--green); }
+
 /* high scores */
 .scores { max-width: 860px; margin: 0 auto; font-family: var(--pixel); font-size: 13px; }
 .row { display: grid; grid-template-columns: 70px 170px 1fr; gap: 16px; padding: 18px 0; border-bottom: 2px dashed var(--rim); align-items: baseline; }
@@ -215,7 +227,7 @@
 .footer a:hover { color: var(--cyan); }
 
 @media (max-width: 860px) {
-  .stages, .select, .powerups, .versus, .needs, .tour { grid-template-columns: 1fr; }
+  .stages, .select, .powerups, .versus, .needs, .tour, .ways, .ways.even { grid-template-columns: 1fr; }
   .who { grid-template-columns: 1fr 1fr; }
   .links { display: none; }
   .row { grid-template-columns: 50px 1fr; } .row p { grid-column: 1 / -1; }

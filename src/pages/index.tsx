@@ -39,6 +39,37 @@ const VS: [string, string, string][] = [
   ['Cost during beta', 'Free', 'Per seat, per month'],
 ];
 
+const CODE: [string, string][] = [
+  ['import tawi', ''],
+  ['', ''],
+  ['tawi.pull("qwen3-0.6b")', 'pull a model'],
+  ['docs = tawi.rag.Index(); docs.add("docs/")', 'RAG pipeline'],
+  ['data = tawi.Dataset.from_file("qa.jsonl")', ''],
+  ['tawi.finetune("qwen3-0.6b", data, out_dir="out")', 'fine-tune'],
+  ['tawi.registry.register("front-desk", "out")', 'store + version'],
+  ['model = tawi.load_model("out")', ''],
+  ['tawi.redteam(model, rag=docs, min_pass=0.8)', 'attack-test'],
+  ['tawi.serve(model, rag=docs, port=8100)', 'REST API'],
+];
+
+const FT: [string, string][] = [
+  ['import tawi', ''],
+  ['data = tawi.Dataset.from_file("qa.jsonl").dedupe()', 'your Q&A'],
+  ['train, test = data.split(test_pct=10)', 'held-out test set'],
+  ['tawi.finetune("qwen3-0.6b", train, out_dir="adapter",', 'LoRA, on your GPU'],
+  ['              system="You are the front desk.")', ''],
+  ['model = tawi.load_model("adapter")', ''],
+  ['print(tawi.evaluate(model, test)["summary"])', 'facts score'],
+  ['print(tawi.redteam(model, min_pass=0.8)["pass_rate"])', 'security check'],
+  ['tawi.registry.register("front-desk", "adapter")', 'versioned'],
+  ['tawi.serve(model, port=8100)', 'REST API'],
+];
+
+const CURL = `curl http://127.0.0.1:8000/v1/chat \\
+  -H "Authorization: Bearer ak_..." \\
+  -d '{"agent": "front-desk",
+       "message": "Open on Saturday?"}'`;
+
 const TOUR = [
   {img: 'rag', tag: 'RAG PIPELINE', title: 'DOCUMENTS IN, SOURCES OUT', text: 'Upload PDFs and Word files or sync Google Drive and Notion. Tawi checks them, chunks them and builds a hybrid search index.'},
   {img: 'finetune', tag: 'FINE-TUNING', title: 'TRAIN WITH ONE CLICK', text: 'Live loss, learning rate, GPU memory and GPU use while it trains. Every run is saved with its settings.'},
@@ -56,7 +87,7 @@ const POWERUPS = [
   ['REST API', 'One endpoint with keys and rate limits built in. Speaks OpenAI’s format, so most tools just change a URL.'],
   ['DOCKER IN MINUTES', 'One click packs your agent into a container for this PC or any server, with the same API key.'],
   ['PLUGS INTO ANYTHING', 'Pull documents from Google Drive and Notion. Answer on your website, a WhatsApp bot or your helpdesk.'],
-  ['PIP INSTALL TAWI-AI', 'The same engine as a Python library: train, search, test and serve in ten lines.'],
+  ['TAWI HUB', 'Pull checked models in one click or with tawi pull. Push and share your own with your team: coming soon.'],
 ];
 
 const FAQ: [string, ReactNode][] = [
@@ -76,7 +107,7 @@ export default function Home(): ReactNode {
   return (
     <ArcadePage
       title="Tawi: train your own AI, keep it on your machine"
-      description="Tawi is a free app that turns your documents into an AI assistant that runs on your own computer. Train it without code on your GPU, attack-test it, and ship it as a REST API or Docker container in minutes. No cloud.">
+      description="Fine-tune open models, build RAG pipelines, version your models and ship a REST API, in a few clicks or a few lines of Python, on your own GPU. Attack-tested before launch. No cloud.">
       <header className={s.hero}>
         <div className={s.coin}>INSERT COIN · FREE PLAY DURING THE BETA</div>
         <h1 className={s.title}>
@@ -85,9 +116,8 @@ export default function Home(): ReactNode {
           <span>KEEP IT ON YOUR MACHINE.</span>
         </h1>
         <p className={s.lead}>
-          Tawi turns your documents into an <b>AI assistant that answers with sources</b>. Train it <b>without code</b> on
-          your own GPU, attack-test it, and ship it as an API or Docker container <b>in minutes</b>. Your data never
-          touches the cloud.
+          <b>Fine-tune</b> open models, build <b>RAG pipelines</b>, <b>store and version</b> your models and ship a <b>REST API</b>.
+          A few clicks or a few lines of Python, on your own GPU, attack-tested before launch. Your data never touches the cloud.
         </p>
         <div className={s.ctas}>
           <Boom to="/download">▶ PRESS START</Boom>
@@ -142,23 +172,32 @@ export default function Home(): ReactNode {
       </section>
 
       <section className={s.section}>
-        <h2 className={s.h2}>3 STAGES TO CLEAR</h2>
-        <p className={s.sub}>From a folder of files to a live assistant in one afternoon.</p>
-        <div className={s.stages}>
-          <div className={s.stage}>
-            <span className={s.tag}>STAGE 1</span>
-            <h3>ADD YOUR DOCUMENTS</h3>
-            <p>Drop in PDFs, Word files, web pages and a few example questions with good answers. Tawi checks them and builds a search index on your disk.</p>
+        <h2 className={s.h2}>CLICKS OR CODE. YOUR CALL.</h2>
+        <p className={s.sub}>Same engine either way. From a folder of files to a live API in one afternoon.</p>
+        <div className={s.ways}>
+          <div className={s.way}>
+            <h3>IN THE STUDIO</h3>
+            <ol>
+              <li><b>Pull a model</b> from the hub</li>
+              <li><b>Drop in documents</b>: your RAG pipeline</li>
+              <li><b>Press Train</b> to fine-tune</li>
+              <li><b>Run the attack test</b></li>
+              <li><b>Press Make API</b>, or deploy with Docker</li>
+            </ol>
           </div>
-          <div className={s.stage}>
-            <span className={s.tag}>STAGE 2</span>
-            <h3>TEACH YOUR MODEL</h3>
-            <p>Pick one of 15 open models and fine-tune it on your GPU or Apple Silicon Mac with one click. Or skip training and let RAG answer from your files.</p>
-          </div>
-          <div className={s.stage}>
-            <span className={s.tag}>STAGE 3</span>
-            <h3>GO LIVE</h3>
-            <p>Your agent faces 50 attacks. Pass, and it gets an API key. Call it over REST, or ship it in Docker to any server in minutes.</p>
+          <div className={`${s.way} ${s.alt}`}>
+            <h3>IN PYTHON</h3>
+            <pre className={s.codebox}>
+              <code>
+                {CODE.map(([c, note], i) => (
+                  <span key={i}>
+                    {c.padEnd(note ? 52 : 0)}
+                    {note && <i># {note}</i>}
+                    {'\n'}
+                  </span>
+                ))}
+              </code>
+            </pre>
           </div>
         </div>
       </section>
@@ -177,6 +216,47 @@ export default function Home(): ReactNode {
           ))}
         </div>
         <p className={s.note}>Real screens from the studio, with a demo dental clinic agent.</p>
+      </section>
+
+      <section className={s.section}>
+        <h2 className={s.h2}>TRAIN IT. TEST IT. SHIP IT.</h2>
+        <p className={s.sub}>The parts other tools charge extra for.</p>
+        <div className={`${s.way} ${s.alt}`} style={{marginBottom: 22}}>
+          <h3>FINE-TUNE IN 10 LINES</h3>
+          <pre className={s.codebox}>
+            <code>
+              {FT.map(([c, note], i) => (
+                <span key={i}>
+                  {c.padEnd(note ? 56 : 0)}
+                  {note && <i># {note}</i>}
+                  {'\n'}
+                </span>
+              ))}
+            </code>
+          </pre>
+          <p className={s.fine} style={{marginTop: 14}}>16 seconds for Qwen3 0.6B on an 8 GB laptop GPU. Prefer clicks? It’s the Train button.</p>
+        </div>
+        <div className={`${s.ways} ${s.even}`}>
+          <div className={s.way}>
+            <h3>REST API IN ONE CLICK</h3>
+            <pre className={s.codebox}><code>{CURL}</code></pre>
+            <ul style={{marginTop: 16}}>
+              <li><b>OpenAI-compatible</b>: change one URL</li>
+              <li><b>Keys, rate limits</b> and a 10-minute cache</li>
+              <li><b>Docker</b> bundle for any server</li>
+            </ul>
+          </div>
+          <div className={`${s.way} ${s.alt}`}>
+            <h3>MLOPS BUILT IN</h3>
+            <ul>
+              <li><b>Experiment tracking</b>: every run, its data and settings</li>
+              <li><b>Model registry</b>: draft, tested, live, with one-click rollback</li>
+              <li><b>Held-out scoring</b> on questions it never trained on</li>
+              <li><b>Live dashboards</b>: requests, latency, unanswered questions</li>
+              <li><b>Export</b> to CSV, PNG or MLflow</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <section className={s.section}>
@@ -230,8 +310,8 @@ export default function Home(): ReactNode {
           ))}
         </div>
         <p className={s.note}>
-          Coming in <Link to="/pricing">Tawi Labs</Link> for teams: a bigger shared drive, your own GPU servers connected, single sign-on and an encrypted secure space.
-          The Python library arrives on PyPI with the public launch.
+          Coming in <Link to="/pricing">Tawi Labs</Link> for teams: push and share models across users and teams, a shared drive, your own GPU servers,
+          single sign-on and an encrypted secure space. <code>pip install tawi-ai</code> arrives with the public launch.
         </p>
       </section>
 
