@@ -239,3 +239,25 @@
   .on .tube, .on .static, .on .osd, .hit { animation: none; }
   .off .tube { transform: none; filter: none; }
 }
+
+/* shattering tiles and the feature pages */
+.shards { position: fixed; z-index: 95; pointer-events: none; }
+.shards > * { position: absolute !important; inset: 0; margin: 0 !important; transform-origin: center; }
+a.shot { display: block; color: inherit !important; text-decoration: none !important; cursor: pointer; }
+.press { display: block; margin-top: 14px; font-family: var(--pixel); font-size: 10px; color: var(--pink); }
+a.shot:hover .press, a.shot:focus-visible .press { animation: blink 0.8s steps(1) infinite; }
+a.shot:focus-visible { border-color: var(--yellow); outline: none; }
+.fhero { text-align: center; padding-block: 150px 0; }
+.fhero h1 { font-family: var(--pixel); font-size: clamp(20px, 3.6vw, 34px); line-height: 1.5 !important; color: var(--cyan) !important; text-shadow: 0 0 16px rgba(0, 240, 255, 0.5); margin: 18px 0 0 !important; text-wrap: balance; }
+.perks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+.perk { padding: 20px; background: var(--panel); border: 3px solid var(--yellow); min-width: 0; text-align: center; }
+.perk b { display: block; font-family: var(--pixel); font-weight: 400; font-size: 22px; color: var(--yellow); margin-bottom: 10px; line-height: 1.3; }
+.perk span { font-size: 21px; color: var(--dim); }
+.cases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.case { padding: 24px; background: var(--panel); border: 4px solid var(--pink); box-shadow: 6px 6px 0 var(--cyan); min-width: 0; }
+.case h3 { font-family: var(--pixel); font-size: 12px; line-height: 1.6; color: var(--pink) !important; margin: 0 0 12px !important; }
+.case p { color: var(--dim); font-size: 21px; margin: 0 !important; }
+.levels { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 70px; font-family: var(--pixel); font-size: 11px; }
+.levels a { color: var(--cyan) !important; }
+@media (max-width: 900px) { .perks, .cases { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .osd { font-size: 10px; bottom: 10px; right: 12px; } }

@@ -1,8 +1,9 @@
 import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import useBrokenLinks from '@docusaurus/useBrokenLinks';
 
-import {ArcadePage, Boom, Cabinet, Sprite, arcade as s} from '@site/src/components/arcade/Arcade';
+import {ArcadePage, Boom, Cabinet, Shatter, Sprite, arcade as s} from '@site/src/components/arcade/Arcade';
 
 // Every number here is measured and written down in the Tawi repo (docs/library.md, tawi/evaluation.py,
 // docs/legal-checklist.md). Change them only together with those.
@@ -71,12 +72,14 @@ const CURL = `curl http://127.0.0.1:8000/v1/chat \\
        "message": "Open on Saturday?"}'`;
 
 const TOUR = [
-  {img: 'rag', tag: 'RAG PIPELINE', title: 'DOCUMENTS IN, SOURCES OUT', text: 'Upload PDFs and Word files or sync Google Drive and Notion. Tawi checks them, chunks them and builds a hybrid search index.'},
-  {img: 'finetune', tag: 'FINE-TUNING', title: 'TRAIN WITH ONE CLICK', text: 'Live loss, learning rate, GPU memory and GPU use while it trains. Every run is saved with its settings.'},
-  {img: 'agent', tag: 'CUSTOM AGENTS', title: 'GIVE IT A JOB DESCRIPTION', text: 'An agent file says who it is, how it talks and what it must never do. Plain text, no prompt engineering degree.'},
-  {img: 'safety', tag: 'SECURITY CHECK', title: '50 ATTACKS BEFORE LAUNCH', text: 'Prompt injection, prompt theft, personal data, medical and legal advice. Below 80% safe, the API stays locked.'},
-  {img: 'mlops', tag: 'MLOPS', title: 'EVERY RUN, COMPARED', text: 'Experiments, versions, promotion and one-click rollback. Export runs and plots as CSV, PNG or a zip.'},
-  {img: 'dashboard', tag: 'DASHBOARDS', title: 'SEE HOW IT PLAYS LIVE', text: 'Requests, latency, “I don’t know” rate and the questions it couldn’t answer, so you can teach it the next day.'},
+  {img: 'rag', slug: 'rag-pipeline', tag: 'RAG PIPELINE', title: 'DOCUMENTS IN, SOURCES OUT', text: 'Upload PDFs and Word files or sync Google Drive and Notion. Tawi checks them, chunks them and builds a hybrid search index.'},
+  {img: 'vectors', slug: 'vector-db', tag: 'VECTOR DB', title: 'SEE WHAT IT KNOWS', text: 'Every chunk, source and setting of your search index on one screen. Every rebuild is saved, so you can roll back.'},
+  {img: 'finetune', slug: 'fine-tuning', tag: 'FINE-TUNING', title: 'TRAIN WITH ONE CLICK', text: 'Live loss, learning rate, GPU memory and GPU use while it trains. Every run is saved with its settings.'},
+  {img: 'agent', slug: 'custom-agents', tag: 'CUSTOM AGENTS', title: 'GIVE IT A JOB DESCRIPTION', text: 'An agent file says who it is, how it talks and what it must never do. Plain text, no prompt engineering degree.'},
+  {img: 'safety', slug: 'security-check', tag: 'SECURITY CHECK', title: '50 ATTACKS BEFORE LAUNCH', text: 'Prompt injection, prompt theft, personal data, medical and legal advice. Below 80% safe, the API stays locked.'},
+  {img: 'mlops', slug: 'mlops', tag: 'MLOPS', title: 'EVERY RUN, COMPARED', text: 'Experiments, versions, promotion and one-click rollback. Export runs and plots as CSV, PNG or a zip.'},
+  {img: 'dashboard', slug: 'dashboards', tag: 'DASHBOARDS', title: 'SEE HOW IT PLAYS LIVE', text: 'Requests, latency, “I don’t know” rate and the questions it couldn’t answer, so you can teach it the next day.'},
+  {img: 'golive', slug: 'rest-api', tag: 'REST API + DOCKER', title: 'LIVE IN ONE CLICK', text: 'An API key, one endpoint and rate limits. One more click packs it into Docker for any server.'},
 ];
 
 const POWERUPS = [
@@ -104,6 +107,7 @@ const FAQ: [string, ReactNode][] = [
 
 export default function Home(): ReactNode {
   const tour = useBaseUrl('/img/studio/tour/');
+  useBrokenLinks().collectAnchor('levels');
   return (
     <ArcadePage
       title="Tawi: train your own AI, keep it on your machine"
@@ -202,17 +206,18 @@ export default function Home(): ReactNode {
         </div>
       </section>
 
-      <section className={s.section}>
+      <section id="levels" className={s.section}>
         <h2 className={s.h2}>ONE STUDIO. EVERY LEVEL.</h2>
-        <p className={s.sub}>RAG pipelines, fine-tuning, custom agents, a security check, MLOps and live dashboards. Usually five tools and five invoices. Here, one app.</p>
+        <p className={s.sub}>RAG pipelines, a vector DB, fine-tuning, custom agents, a security check, MLOps, dashboards and a REST API. Usually five tools and five invoices. Here, one app. Hit a level to play it.</p>
         <div className={s.tour}>
           {TOUR.map((t) => (
-            <div key={t.img} className={s.shot}>
+            <Shatter key={t.img} to={`/features/${t.slug}`} className={s.shot}>
               <span className={s.tag}>{t.tag}</span>
               <h3>{t.title}</h3>
               <p>{t.text}</p>
               <img src={`${tour}${t.img}.webp`} alt={`Tawi studio: ${t.tag.toLowerCase()}`} width={1600} height={1000} loading="lazy" />
-            </div>
+              <span className={s.press}>▶ PRESS TO PLAY THIS LEVEL</span>
+            </Shatter>
           ))}
         </div>
         <p className={s.note}>Real screens from the studio, with a demo dental clinic agent.</p>

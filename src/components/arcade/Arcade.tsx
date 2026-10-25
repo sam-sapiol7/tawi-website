@@ -97,6 +97,58 @@ export function Boom({
   );
 }
 
+// ---------- tiles that shatter into pixel blocks, then open their page ----------
+export function Shatter({to, className, children}: {to: string; className?: string; children: ReactNode}): ReactNode {
+  const history = useHistory();
+  const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (calm() || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    const el = e.currentTarget;
+    const r = el.getBoundingClientRect();
+    boomAt(e.clientX || r.left + r.width / 2, e.clientY || r.top + r.height / 2);
+    // copies of the tile, each clipped to one block of a grid, fly apart from where it was hit
+    const layer = document.createElement('div');
+    layer.className = s.shards;
+    Object.assign(layer.style, {left: `${r.left}px`, top: `${r.top}px`, width: `${r.width}px`, height: `${r.height}px`});
+    const cols = 5;
+    const rows = Math.max(3, Math.round((cols * r.height) / r.width));
+    const hx = (e.clientX || r.left + r.width / 2) - r.left;
+    const hy = (e.clientY || r.top + r.height / 2) - r.top;
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        const piece = el.cloneNode(true) as HTMLElement;
+        const x0 = (i / cols) * 100;
+        const y0 = (j / rows) * 100;
+        piece.style.clipPath = `inset(${y0}% ${100 - x0 - 100 / cols}% ${100 - y0 - 100 / rows}% ${x0}%)`;
+        layer.appendChild(piece);
+        const dx = ((i + 0.5) / cols) * r.width - hx;
+        const dy = ((j + 0.5) / rows) * r.height - hy;
+        const d = Math.hypot(dx, dy) || 1;
+        const push = 160 + Math.random() * 220;
+        piece.animate(
+          [
+            {transform: 'none', opacity: 1, filter: 'brightness(2)'},
+            {transform: `translate(${(dx / d) * push}px, ${(dy / d) * push + 220}px) rotate(${(Math.random() - 0.5) * 140}deg)`, opacity: 0, filter: 'none'},
+          ],
+          {duration: 620, easing: 'cubic-bezier(0.2, 0.6, 0.4, 1)', fill: 'forwards'},
+        );
+      }
+    }
+    document.body.appendChild(layer);
+    el.style.visibility = 'hidden';
+    setTimeout(() => {
+      history.push(to);
+      layer.remove();
+      el.style.visibility = '';
+    }, 560);
+  };
+  return (
+    <Link to={to} className={className} onClick={onClick}>
+      {children}
+    </Link>
+  );
+}
+
 // ---------- the effects layer: explosions for everyone, a ship for mouse users ----------
 const SHIP = ['......1......', '......1......', '.....111.....', '.....111.....', '..2..111..2..', '..2.11311.2..', '2.211131112.2', '2111111111112', '2112111112112', '211.21112.112', '2....121....2'];
 const BUG = [
@@ -309,7 +361,15 @@ function Stars(): ReactNode {
 }
 
 // ---------- the old TV the studio switches on in ----------
-export function Cabinet(): ReactNode {
+export function Cabinet({
+  src = '/img/studio/train-step-light.webp',
+  alt = 'The Tawi studio: naming a new agent and picking the model to train',
+  marquee = 'TAWI STUDIO · 1 PLAYER · 127.0.0.1',
+  channel = 'CH 03 ▶ TAWI',
+  caption = 'WINDOWS · APPLE SILICON · LINUX',
+  width = 2000,
+  height = 1186,
+}: {src?: string; alt?: string; marquee?: string; channel?: string; caption?: string; width?: number; height?: number}): ReactNode {
   const tv = useRef<HTMLDivElement>(null);
   const [state, setState] = useState<'idle' | 'off' | 'on'>('idle');
   useEffect(() => {
@@ -333,14 +393,14 @@ export function Cabinet(): ReactNode {
   }, []);
   return (
     <div className={`${s.cabinet} ${state === 'on' ? s.lit : ''}`}>
-      <div className={s.marquee}>TAWI STUDIO · 1 PLAYER · 127.0.0.1</div>
+      <div className={s.marquee}>{marquee}</div>
       <div ref={tv} className={`${s.screen} ${state === 'off' ? s.off : ''} ${state === 'on' ? s.on : ''}`}>
         <div className={s.tube}>
-          <img src={useBaseUrl('/img/studio/train-step-light.webp')} alt="The Tawi studio: naming a new agent and picking the model to train" width={2000} height={1186} />
+          <img src={useBaseUrl(src)} alt={alt} width={width} height={height} />
         </div>
         <div className={s.static} aria-hidden="true" />
         <div className={s.osd} aria-hidden="true">
-          CH 03 ▶ TAWI
+          {channel}
         </div>
       </div>
       <div className={s.controls}>
@@ -348,7 +408,7 @@ export function Cabinet(): ReactNode {
           <span className={s.stick} aria-hidden="true" />
           <span className={s.led} aria-hidden="true" />
         </span>
-        <span>WINDOWS · APPLE SILICON · LINUX</span>
+        <span>{caption}</span>
         <span className={s.buttons} aria-hidden="true">
           <i style={{background: '#ff2bd6'}} />
           <i style={{background: '#00f0ff'}} />
