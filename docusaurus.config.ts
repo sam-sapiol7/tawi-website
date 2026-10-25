@@ -12,7 +12,7 @@ const analyticsToken = process.env.CF_WEB_ANALYTICS_TOKEN;
 
 const config: Config = {
   title: 'Tawi',
-  tagline: 'Fine-tune and serve your own AI agents on your own computer.',
+  tagline: 'Train your own AI. Keep it on your machine.',
   favicon: 'img/favicon.svg',
 
   future: {
@@ -132,8 +132,8 @@ const config: Config = {
         alt: 'Tawi',
         src: 'img/logo.svg',
         srcDark: 'img/logo-dark.svg',
-        width: 28,
-        height: 28,
+        width: 24,
+        height: 24,
       },
       items: [
         {type: 'docSidebar', sidebarId: 'docs', position: 'left', label: 'Docs'},
@@ -187,7 +187,7 @@ const config: Config = {
     },
     prism: {
       theme: prismThemes.github,
-      darkTheme: prismThemes.oneDark,
+      darkTheme: prismThemes.dracula,
       additionalLanguages: ['bash', 'json', 'python', 'http', 'powershell'],
     },
     languageTabs: [
