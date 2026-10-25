@@ -336,7 +336,7 @@ export function Cabinet(): ReactNode {
       <div className={s.marquee}>TAWI STUDIO · 1 PLAYER · 127.0.0.1</div>
       <div ref={tv} className={`${s.screen} ${state === 'off' ? s.off : ''} ${state === 'on' ? s.on : ''}`}>
         <div className={s.tube}>
-          <img src={useBaseUrl('/img/studio/train-step-light.webp')} alt="The Tawi studio: naming a new agent and picking the model to train" width={1600} height={1003} />
+          <img src={useBaseUrl('/img/studio/train-step-light.webp')} alt="The Tawi studio: naming a new agent and picking the model to train" width={2000} height={1186} />
         </div>
         <div className={s.static} aria-hidden="true" />
         <div className={s.osd} aria-hidden="true">

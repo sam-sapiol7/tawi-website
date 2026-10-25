@@ -30,7 +30,7 @@
 .stars { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; }
 .fx { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 89; pointer-events: none; }
 .crt { position: fixed; inset: 0; z-index: 90; pointer-events: none;
-  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0) 0 2px, rgba(0, 0, 0, 0.26) 2px 4px), radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.6) 100%); }
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0) 0 3px, rgba(0, 0, 0, 0.07) 3px 4px), radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.45) 100%); }
 :global(html).shipOn, :global(html).shipOn a, :global(html).shipOn button, :global(html).shipOn [tabindex] { cursor: none; }
 
 .wrap { position: relative; max-width: 1100px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
@@ -77,9 +77,9 @@
 .marquee { font-family: var(--pixel); font-size: 12px; text-align: center; padding: 12px; margin-bottom: 18px; color: var(--void);
   background: linear-gradient(90deg, var(--pink), var(--yellow), var(--cyan)); }
 .screen { position: relative; border-radius: 18px; overflow: hidden; border: 6px solid #000; background: #000; }
-.screen::after { content: ''; position: absolute; inset: 0; z-index: 4; pointer-events: none; box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.75);
-  background: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0, 0, 0, 0.22) 2px 3px); }
-.tube img { display: block; width: 100%; height: auto; filter: saturate(1.15) contrast(1.04); }
+.screen::after { content: ''; position: absolute; inset: 0; z-index: 4; pointer-events: none; box-shadow: inset 0 0 36px rgba(0, 0, 0, 0.5);
+  background: repeating-linear-gradient(to bottom, transparent 0 3px, rgba(0, 0, 0, 0.09) 3px 4px); }
+.tube img { display: block; width: 100%; height: auto; }
 .off .tube { transform: scale(0, 0.003); filter: brightness(4); }
 .on .tube { animation: poweron 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
 @keyframes poweron {
@@ -93,7 +93,7 @@
   background: repeating-radial-gradient(circle at 17% 32%, #fff 0 0.5px, transparent 1px 3px), repeating-radial-gradient(circle at 73% 61%, #aaa 0 0.5px, transparent 1px 2px); }
 .on .static { animation: snow 1.6s steps(6) both; }
 @keyframes snow { 0%, 40% { opacity: 0; } 50% { opacity: 0.55; background-position: 10px 4px, 3px 9px; } 65% { opacity: 0.35; background-position: 2px 12px, 9px 1px; } 100% { opacity: 0; } }
-.osd { position: absolute; z-index: 3; top: 18px; right: 22px; font-family: var(--pixel); font-size: 14px; color: var(--green); text-shadow: 0 0 8px var(--green); opacity: 0; }
+.osd { position: absolute; z-index: 3; bottom: 16px; right: 22px; font-family: var(--pixel); font-size: 14px; color: var(--green); text-shadow: 0 0 8px var(--green); opacity: 0; }
 .on .osd { animation: osd 4s 1.2s both; }
 @keyframes osd { 0%, 80% { opacity: 1; } 100% { opacity: 0; } }
 .controls { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 20px 10px 0; font-family: var(--pixel); font-size: 10px; color: var(--dim); }
